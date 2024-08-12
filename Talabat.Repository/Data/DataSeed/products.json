@@ -1,0 +1,34 @@
+[
+  {
+    "Name": "iPhone 14 Pro ",
+    "Description": "The iPhone 14 Pro features a 6.1-inch Super Retina XDR display, A16 Bionic chip, Pro camera system with 48MP main camera, and more",
+    "Price": 999,
+    "PictureUrl": "images/iPhone14.jpeg",
+    "ProductTypeId": 1,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Samsung QN90A Neo QLED 4K TV",
+    "Description": "The Samsung QN90A Neo QLED 4K TV delivers stunning 4K resolution with Quantum Matrix Technology, HDR10+, and Object Tracking Sound+",
+    "Price": 950,
+    "PictureUrl": "images/Tv.jpeg",
+    "ProductTypeId": 2,
+    "ProductBrandId": 2
+  },
+  {
+    "Name": "Sony WH-1000XM4",
+    "Description": "The Sony WH-1000XM4 headphones offer industry-leading noise cancellation, superior sound quality, and up to 30 hours of battery life.",
+    "Price": 350,
+    "PictureUrl": "images/headphone.jpeg",
+    "ProductTypeId": 3,
+    "ProductBrandId": 3
+  },
+  {
+    "Name": "Dell XPS 13",
+    "Description": "The Dell XPS 13 is a high-performance laptop with a 13.4-inch InfinityEdge display, 11th Gen Intel Core processors, and a sleek, lightweight design",
+    "Price": 900,
+    "PictureUrl": "images/Labtop.jpeg",
+    "ProductTypeId": 4,
+    "ProductBrandId": 4
+  }
+]
