@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
 using Talabat.Domain.Entities.OrderAggregate;
 using Talabat.Domain.Services;
@@ -23,6 +24,8 @@ namespace Talabat.Controllers
         }
 
         [HttpPost] // POST:  api/Order
+        [SwaggerOperation(summary: " انشاء طلب شراء ")]
+
         public async Task<ActionResult<OrderToReturnDto>> CreateOrder (OrderDto orderDto)
         {
             var BuyerEmail = User.FindFirstValue(ClaimTypes.Email);
@@ -34,6 +37,8 @@ namespace Talabat.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(summary: " ايجاد الطلب الخاص بالمستخدم ")]
+
         public async Task<ActionResult<IReadOnlyList<OrderToReturnDto>>> GetOrderForUser()
 
         {
@@ -46,6 +51,8 @@ namespace Talabat.Controllers
         }
 
         [HttpGet("id")]
+        [SwaggerOperation(summary: " الحصول علي الطلب بواسطه المعرف")]
+
         public async Task<ActionResult<OrderToReturnDto>> GetOrderById(int id)
         {
             var buyerEmail = User.FindFirstValue(ClaimTypes.Email);
@@ -54,10 +61,13 @@ namespace Talabat.Controllers
              return Ok(mapper.Map<Order , OrderToReturnDto>(order));
         }
         [HttpGet("deliveryMethod")]
+        [SwaggerOperation(summary: " ايجاد طريقه التوصيل ")]
+
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethod()
         {
             var deliveryMethod = await orderService.GetDeliveryMethodAsync();
             return Ok(deliveryMethod);
         }
+
     }
 }

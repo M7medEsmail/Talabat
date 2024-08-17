@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using Talabat.Domain.Entities;
 using Talabat.Domain.IRepositories;
 using Talabat.Dto;
@@ -27,6 +28,8 @@ namespace Talabat.Controllers
         //}
 
         [HttpPost]
+        [SwaggerOperation(summary: " تعديل المنتجات الموجوده في السله ")]
+
         public async Task<ActionResult<CustomerBasket>> UpdateBasket (CustomerBasket customerBasket)
         {
 
@@ -45,6 +48,8 @@ namespace Talabat.Controllers
         }
 
         [HttpDelete]
+        [SwaggerOperation(summary: "حذف السله    ")]
+
         public async Task DeleteBasket (string id)
         {
            await BasketRepository.DeleteBasket(id);

@@ -19,14 +19,18 @@ namespace Talabat.Repository
             Context = context;
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
-           await Context.Set<T>().AddAsync( entity );
+             await Context.Set<T>().AddAsync( entity );
+             Context.SaveChangesAsync();
+            return entity;
+             
         }
-
+            
         public void DeleteAsync(T entity)
         {
             Context.Set<T>().Remove( entity );
+            Context.SaveChangesAsync();
         }
 
         public async Task<IReadOnlyList<T>> GetAllAsync()

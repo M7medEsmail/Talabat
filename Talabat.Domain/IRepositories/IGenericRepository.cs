@@ -11,7 +11,7 @@ namespace Talabat.Domain.IRepositories
     public interface IGenericRepository<T>  where T : BaseEntity
     {
 
-        Task CreateAsync(T entity);
+        Task<T> CreateAsync(T entity);
         void UpdateAsync(T entity);
         void DeleteAsync(T entity);
         Task<IReadOnlyList<T>> GetAllAsync();
@@ -21,3 +21,4 @@ namespace Talabat.Domain.IRepositories
         Task<T> GetByIdWithSpecAsync(ISpecification<T> spec);
     }
 }
+ 

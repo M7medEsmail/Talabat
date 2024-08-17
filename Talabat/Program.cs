@@ -93,6 +93,11 @@ app.UseAuthorization();
 
 
 app.MapControllers();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+    c.RoutePrefix = string.Empty; // To serve Swagger UI at the app's root
+});
 
 #endregion
 

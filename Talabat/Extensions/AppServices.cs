@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
+using System.Reflection;
 using Talabat.Domain.Entities.Identity;
 using Talabat.Domain.IRepositories;
 using Talabat.Domain.Services;
@@ -25,9 +27,7 @@ namespace Talabat.Extensions
             services.AddScoped(typeof(IOrderService), typeof(OrderService));
 
             services.AddAutoMapper(typeof(MappingProfile));
-
-
-
+            
             return services;
 
         }

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
@@ -33,6 +34,8 @@ namespace Talabat.Controllers
             EmailService = emailService;
         }
         [HttpPost("login")]
+        [SwaggerOperation(summary: "تسجيل الدخول ")]
+
         public async Task<ActionResult<UserDto>> Login(LoginDto LoginDto)
         {
             var user = await userManager.FindByEmailAsync(LoginDto.Email);
@@ -50,6 +53,8 @@ namespace Talabat.Controllers
         }
 
         [HttpPost("register")]
+        [SwaggerOperation(summary: "انشاء حساب ")]
+
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (CheckEmailExist(registerDto.Email).Result.Value)
@@ -77,6 +82,8 @@ namespace Talabat.Controllers
         }
 
         [HttpPost("SignOut")]
+        [SwaggerOperation(summary: "تسجيل الخروج ")]
+
         [Authorize]
         public new async Task<ActionResult> SignOut() // we use new because the base of controller have signoit function 
         {
@@ -86,6 +93,8 @@ namespace Talabat.Controllers
 
 
         [HttpPost("SendEmail")]
+        [SwaggerOperation(summary: "  ارسال ميل للمستخدم ")]
+
         public async Task<ActionResult> SendEmail(Email request)
         {
             EmailService.SendEmail(request);
@@ -117,6 +126,8 @@ namespace Talabat.Controllers
 
         [Authorize]
         [HttpGet("CurrentUser")] // Get : api/account
+        [SwaggerOperation(summary: " ايجاد المستخدم الحالي")]
+
         public async Task<ActionResult<UserDto>> CurrentUser()
         {
             var email = User.FindFirstValue(ClaimTypes.Email);
@@ -131,6 +142,8 @@ namespace Talabat.Controllers
         }
 
         [HttpGet("EmailExist")]
+        [SwaggerOperation(summary: " فحص اذا كان الايميل موجود ولا لا ")]
+
         public async Task<ActionResult<bool>> CheckEmailExist(string email)
         {
             return await userManager.FindByEmailAsync(email) !=null;
@@ -139,6 +152,8 @@ namespace Talabat.Controllers
 
         [Authorize]
         [HttpPut("UpdateAddress")] // Put : api/account/address
+        [SwaggerOperation(summary: " تعديل عنوان المستخدم ")]
+
         public async Task<ActionResult<AddressDto>> UpdateUserAddress(AddressDto UpdatedAddress)
         {
             var address = Mapper.Map<AddressDto, Address>(UpdatedAddress);
@@ -152,6 +167,8 @@ namespace Talabat.Controllers
         }
         [Authorize]
         [HttpGet("address")]
+        [SwaggerOperation(summary: " ايجاد عنوان المستخدم ")]
+
         public async Task<ActionResult<AddressDto>> GetUserAddress()
         {
             var user = await userManager.FindUserWithAddressByEmailAsync(User);

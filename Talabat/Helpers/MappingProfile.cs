@@ -10,7 +10,14 @@ namespace Talabat.Helpers
     {
         public MappingProfile()
         {
+            CreateMap<ProductTypeDto , ProductType>().ReverseMap();
+            CreateMap<ProductBrandDto , ProductBrand>().ReverseMap();
             CreateMap<Product, ProductToReturn>()
+                .ForMember(D => D.ProductBrand, d => d.MapFrom(s => s.ProductBrand.Name))
+                .ForMember(D => D.ProductType, d => d.MapFrom(s => s.ProductType.Name))
+                .ForMember(D => D.PictureUrl, d => d.MapFrom<ProductPictureUrlResolver>());
+
+            CreateMap<Product, ProductDto>()
                 .ForMember(D => D.ProductBrand, d => d.MapFrom(s => s.ProductBrand.Name))
                 .ForMember(D => D.ProductType, d => d.MapFrom(s => s.ProductType.Name))
                 .ForMember(D => D.PictureUrl, d => d.MapFrom<ProductPictureUrlResolver>());
